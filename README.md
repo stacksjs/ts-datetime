@@ -141,8 +141,8 @@ The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 Made with 💙
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/ts-datetime?style=flat-square
-[npm-version-href]: https://npmjs.com/package/ts-datetime
+[npm-version-src]: https://img.shields.io/npm/v/@stacksjs/ts-datetime?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@stacksjs/ts-datetime
 [github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/ts-datetime/ci.yml?style=flat-square&branch=main
 [github-actions-href]: https://github.com/stacksjs/ts-datetime/actions?query=workflow%3Aci
 
