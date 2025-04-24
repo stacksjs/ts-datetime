@@ -59,6 +59,26 @@ const sidebar = [
       { text: 'Config', link: '/config' },
     ],
   },
+  {
+    text: 'Features',
+    items: [
+      { text: 'Immutable API', link: '/features/immutable-api' },
+      { text: 'Formatting', link: '/features/formatting' },
+      { text: 'Intervals', link: '/features/intervals' },
+      { text: 'Periods', link: '/features/periods' },
+      { text: 'Human Diffs', link: '/features/human-diffs' },
+      { text: 'Relative Strings', link: '/features/relative-strings' },
+    ],
+  },
+  {
+    text: 'Advanced',
+    items: [
+      { text: 'Localization', link: '/advanced/localization' },
+      { text: 'Type Safety', link: '/advanced/type-safety' },
+      { text: 'Performance', link: '/advanced/performance' },
+      { text: 'Testing', link: '/advanced/testing' },
+    ],
+  },
   { text: 'Showcase', link: '/Showcase' },
 ]
 const description = 'A modern, immutable, and fully-typed TypeScript datetime library inspired by Carbon.'
@@ -146,9 +166,10 @@ export default withPwa(
         dark: 'github-dark',
       },
 
-      codeTransformers: [
-        transformerTwoslash(),
-      ],
+      // Commenting out transformer until type compatibility issue is fixed
+      // codeTransformers: [
+      //   transformerTwoslash(),
+      // ],
     },
 
     vite: viteConfig,
