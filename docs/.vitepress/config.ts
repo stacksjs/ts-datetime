@@ -2,7 +2,6 @@ import type { HeadConfig } from 'vitepress'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { withPwa } from '@vite-pwa/vitepress'
 import { defineConfig } from 'vitepress'
-
 import viteConfig from './vite.config'
 
 // https://vitepress.dev/reference/site-config
@@ -62,8 +61,8 @@ const sidebar = [
   },
   { text: 'Showcase', link: '/Showcase' },
 ]
-const description = 'A TypeScript Starter Kit. For a better Development Experience.'
-const title = 'ts-datetime | A TypeScript Starter Kit. For a better Development Experience.'
+const description = 'A modern, immutable, and fully-typed TypeScript datetime library inspired by Carbon.'
+const title = 'ts-datetime | Modern TypeScript DateTime Library'
 
 export default withPwa(
   defineConfig({
@@ -83,7 +82,7 @@ export default withPwa(
       ['meta', { name: 'author', content: 'Stacks.js, Inc.' }],
       ['meta', {
         name: 'tags',
-        content: 'ts-datetime, stacksjs, reverse proxy, modern, lightweight, zero-config, local development',
+        content: 'ts-datetime, datetime, typescript, date, time, carbon, immutable, modern, library',
       }],
 
       ['meta', { property: 'og:type', content: 'website' }],
