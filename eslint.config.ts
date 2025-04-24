@@ -12,6 +12,9 @@ const config: ESLintConfig = stacks({
   yaml: true,
   ignores: [
     'fixtures/**',
+    '**/advanced/testing.md',
+    '**/advanced/type-safety.md',
+    '**/features/immutable-api.md',
   ],
 })
 
