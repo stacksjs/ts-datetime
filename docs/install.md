@@ -7,19 +7,19 @@ Install `ts-datetime` in your project using your favorite package manager:
 ::: code-group
 
 ```sh [npm]
-npm install ts-datetime
+npm install @stacksjs/ts-datetime
 ```
 
 ```sh [bun]
-bun add ts-datetime
+bun add @stacksjs/ts-datetime
 ```
 
 ```sh [pnpm]
-pnpm add ts-datetime
+pnpm add @stacksjs/ts-datetime
 ```
 
 ```sh [yarn]
-yarn add ts-datetime
+yarn add @stacksjs/ts-datetime
 ```
 
 :::

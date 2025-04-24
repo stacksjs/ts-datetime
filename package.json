@@ -1,5 +1,5 @@
 {
-  "name": "ts-datetime",
+  "name": "@stacksjs/ts-datetime",
   "type": "module",
   "version": "0.1.0",
   "description": "A simple TypeScript starter kit using Bun.",
@@ -25,9 +25,6 @@
   },
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "bin-name": "./dist/bin/cli.js"
-  },
   "files": ["README.md", "dist"],
   "scripts": {
     "build": "bun --bun build.ts",

@@ -24,16 +24,16 @@ A modern, immutable, and fully-typed TypeScript datetime library inspired by Car
 
 ```bash
 # npm
-npm install ts-datetime
+npm install @stacksjs/ts-datetime
 
 # pnpm
-pnpm add ts-datetime
+pnpm add @stacksjs/ts-datetime
 
 # yarn
-yarn add ts-datetime
+yarn add @stacksjs/ts-datetime
 
 # bun
-bun add ts-datetime
+bun add @stacksjs/ts-datetime
 ```
 
 ## Quick Examples
