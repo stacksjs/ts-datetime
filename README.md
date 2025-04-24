@@ -6,7 +6,7 @@
 <!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 <!-- [![Codecov][codecov-src]][codecov-href] -->
 
-# bun-ts-datetime
+# ts-datetime
 
 This is an opinionated TypeScript Starter kit to help kick-start development of your next Bun package.
 
@@ -50,7 +50,7 @@ bun test
 
 ## Changelog
 
-Please see our [releases](https://github.com/stackjs/bun-ts-datetime/releases) page for more information on what has changed recently.
+Please see our [releases](https://github.com/stackjs/ts-datetime/releases) page for more information on what has changed recently.
 
 ## Contributing
 
@@ -86,8 +86,8 @@ The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 Made with 💙
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/bun-ts-datetime?style=flat-square
-[npm-version-href]: https://npmjs.com/package/bun-ts-datetime
+[npm-version-src]: https://img.shields.io/npm/v/ts-datetime?style=flat-square
+[npm-version-href]: https://npmjs.com/package/ts-datetime
 [github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/ts-datetime/ci.yml?style=flat-square&branch=main
 [github-actions-href]: https://github.com/stacksjs/ts-datetime/actions?query=workflow%3Aci
 
