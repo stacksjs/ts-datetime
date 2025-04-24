@@ -1,4 +1,4 @@
-<p align="center"><img src=".github/art/cover.jpg" alt="Social Card of this repo"></p>
+<p align="center"><img src=".github/art/cover.jpg" alt="Social Card of ts-datetime"></p>
 
 [![npm version][npm-version-src]][npm-version-href]
 [![GitHub Actions][github-actions-src]][github-actions-href]
@@ -8,39 +8,94 @@
 
 # ts-datetime
 
-This is an opinionated TypeScript Starter kit to help kick-start development of your next Bun package.
+A modern, immutable, and fully-typed TypeScript datetime library inspired by Carbon (PHP) and Day.js.
 
 ## Features
 
-This Starter Kit comes pre-configured with the following:
+- 🔄 **Immutable API** _All operations return new instances_
+- ⛓️ **Fluent Interface** _Chainable, readable, and expressive_
+- 🌍 **Locale Support** _Global, per-instance, and per-call configuration_
+- 📅 **Robust Parsing** _ISO, timestamps, relative strings (e.g. "next week", "+2 days")_
+- ⏱️ **Intervals & Periods** _Built-in support for durations and date ranges_
+- 💪 **TypeScript First** _Fully typed, with great DX in modern editors_
+- ✅ **Tested** _Thoroughly tested for edge cases and correctness_
 
-- 🛠️ [Powerful Build Process](https://github.com/oven-sh/bun) - via Bun
-- 💪🏽 [Fully Typed APIs](https://www.typescriptlang.org/) - via TypeScript
-- 📚 [Documentation-ready](https://vitepress.dev/) - via VitePress
-- ⌘ [CLI & Binary](https://www.npmjs.com/package/bunx) - via Bun & CAC
-- 🧪 [Built With Testing In Mind](https://bun.sh/docs/cli/test) - pre-configured unit-testing powered by [Bun](https://bun.sh/docs/cli/test)
-- 🤖 [Renovate](https://renovatebot.com/) - optimized & automated PR dependency updates
-- 🎨 [ESLint](https://eslint.org/) - for code linting _(and formatting)_
-- 📦️ [pkg.pr.new](https://pkg.pr.new) - Continuous (Preview) Releases for your libraries
-- 🐙 [GitHub Actions](https://github.com/features/actions) - runs your CI _(fixes code style issues, tags releases & creates its changelogs, runs the test suite, etc.)_
-
-## Get Started
-
-It's rather simple to get your package development started:
+## Installation
 
 ```bash
-# you may use this GitHub template or the following command:
-bunx degit stacksjs/ts-datetime my-pkg
-cd my-pkg
+# npm
+npm install ts-datetime
 
-bun i # install all deps
-bun run build # builds the library for production-ready use
+# pnpm
+pnpm add ts-datetime
 
-# after you have successfully committed, you may create a "release"
-bun run release # automates git commits, versioning, and changelog generations
+# yarn
+yarn add ts-datetime
+
+# bun
+bun add ts-datetime
 ```
 
-_Check out the package.json scripts for more commands._
+## Quick Examples
+
+```ts
+import { Datetime, DatetimeInterval, DatetimePeriod } from 'ts-datetime'
+
+// Creating dates
+const now = Datetime.now()
+const tomorrow = Datetime.tomorrow()
+const specificDate = new Datetime('2024-01-01T12:00:00Z')
+
+// Manipulation
+const nextWeek = now.addDays(7)
+const lastMonth = now.subMonths(1)
+
+// Formatting
+console.log(specificDate.format('YYYY-MM-DD')) // "2024-01-01"
+console.log(now.diffForHumans()) // "just now"
+
+// Intervals
+const interval = DatetimeInterval.days(5).add(DatetimeInterval.hours(12))
+console.log(interval.forHumans()) // "5 days 12 hours"
+
+// Periods (date ranges)
+const period = new DatetimePeriod(
+  new Datetime('2024-01-01'),
+  new Datetime('2024-01-10'),
+  DatetimeInterval.days(2)
+)
+
+// Iterate over period
+for (const date of period) {
+  console.log(date.format('YYYY-MM-DD'))
+}
+// 2024-01-01, 2024-01-03, 2024-01-05, 2024-01-07, 2024-01-09
+```
+
+## Documentation
+
+For full documentation, visit [ts-datetime.netlify.app](https://ts-datetime.netlify.app).
+
+- [Introduction](https://ts-datetime.netlify.app/intro)
+- [Installation](https://ts-datetime.netlify.app/install)
+- [Usage](https://ts-datetime.netlify.app/usage)
+- [Configuration](https://ts-datetime.netlify.app/config)
+
+### Feature Documentation
+
+- [Immutable API](https://ts-datetime.netlify.app/features/immutable-api)
+- [Formatting](https://ts-datetime.netlify.app/features/formatting)
+- [Intervals](https://ts-datetime.netlify.app/features/intervals)
+- [Periods](https://ts-datetime.netlify.app/features/periods)
+- [Human Diffs](https://ts-datetime.netlify.app/features/human-diffs)
+- [Relative Strings](https://ts-datetime.netlify.app/features/relative-strings)
+
+### Advanced Topics
+
+- [Localization](https://ts-datetime.netlify.app/advanced/localization)
+- [Type Safety](https://ts-datetime.netlify.app/advanced/type-safety)
+- [Performance](https://ts-datetime.netlify.app/advanced/performance)
+- [Testing](https://ts-datetime.netlify.app/advanced/testing)
 
 ## Testing
 
