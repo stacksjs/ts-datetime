@@ -1,89 +1,83 @@
-# Get Started
+# Usage
 
-There are two ways of using this reverse proxy: _as a library or as a CLI._
+Here are some common usage patterns for `ts-datetime`.
 
-## Library
-
-Given the npm package is installed:
+## Construction
 
 ```ts
-import type { TlsConfig } from '@stacksjs/rpx'
-import { startProxy } from '@stacksjs/rpx'
+import { Datetime } from 'ts-datetime'
 
-export interface CleanupConfig {
-  hosts: boolean // clean up /etc/hosts, defaults to false
-  certs: boolean // clean up certificates, defaults to false
-}
-
-export interface ReverseProxyConfig {
-  from: string // domain to proxy from, defaults to localhost:3000
-  to: string // domain to proxy to, defaults to stacks.localhost
-  cleanUrls?: boolean // removes the .html extension from URLs, defaults to false
-  https: boolean | TlsConfig // automatically uses https, defaults to true, also redirects http to https
-  cleanup?: boolean | CleanupConfig // automatically cleans up /etc/hosts, defaults to false
-  verbose: boolean // log verbose output, defaults to false
-}
-
-const config: ReverseProxyOptions = {
-  from: 'localhost:3000',
-  to: 'my-docs.localhost',
-  cleanUrls: true,
-  https: true,
-  cleanup: false,
-}
-
-startProxy(config)
+const d1 = new Datetime() // now
+const d2 = new Datetime('2024-01-01T00:00:00Z')
+const d3 = new Datetime(1704067200000) // timestamp
+const d4 = new Datetime(new Date())
 ```
 
-In case you are trying to start multiple proxies, you may use this configuration:
+## Static Constructors
 
 ```ts
-// reverse-proxy.config.{ts,js}
-import type { ReverseProxyOptions } from '@stacksjs/rpx'
-import os from 'node:os'
-import path from 'node:path'
+Datetime.now()
+Datetime.today()
+Datetime.tomorrow()
+Datetime.yesterday()
+Datetime.fromString('2024-01-01T00:00:00Z')
+Datetime.fromTimestamp(1704067200000)
+```
 
-const config: ReverseProxyOptions = {
-  https: { // https: true -> also works with sensible defaults
-    caCertPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.ca.crt`),
-    certPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt`),
-    keyPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt.key`),
-  },
+## Manipulation
 
-  cleanup: {
-    hosts: true,
-    certs: false,
-  },
+```ts
+const d = new Datetime('2024-01-01T00:00:00Z')
+d.addDays(5)
+d.subMonths(1)
+d.addYears(2)
+d.addHours(3).addMinutes(15)
+```
 
-  proxies: [
-    {
-      from: 'localhost:5173',
-      to: 'my-app.localhost',
-      cleanUrls: true,
-    },
-    {
-      from: 'localhost:5174',
-      to: 'my-api.local',
-    },
-  ],
+## Formatting
 
-  verbose: true,
+```ts
+const d = new Datetime('2024-01-01T12:34:56Z')
+d.format('YYYY-MM-DD HH:mm') // '2024-01-01 12:34'
+d.toString() // uses defaultFormat from config
+d.toISOString() // ISO string
+```
+
+## Human-Readable Diffs
+
+```ts
+d.diffForHumans() // 'just now', '2 days ago', 'in 3 hours', etc.
+```
+
+## Intervals and Periods
+
+```ts
+import { DatetimeInterval, DatetimePeriod } from 'ts-datetime'
+
+const interval = DatetimeInterval.days(3).add(DatetimeInterval.hours(5))
+interval.forHumans() // '3 days 5 hours'
+
+const start = new Datetime('2024-01-01')
+const end = new Datetime('2024-01-05')
+const period = new DatetimePeriod(start, end, DatetimeInterval.days(2))
+for (const d of period) {
+  console.log(d.format('YYYY-MM-DD')) // 2024-01-01, 2024-01-03, 2024-01-05
 }
-
-export default config
 ```
 
-## CLI
+## Relative String Parsing
 
-```bash
-rpx --from localhost:3000 --to my-project.localhost
-rpx --from localhost:8080 --to my-project.test --keyPath ./key.pem --certPath ./cert.pem
-rpx --help
-rpx --version
+```ts
+Datetime.fromString('next week')
+Datetime.fromString('+2 days')
+Datetime.fromString('last month')
 ```
 
-## Testing
+## Config Overrides
 
-```bash
-bun test
+```ts
+const d = new Datetime('2024-01-01T00:00:00Z', { locale: 'fr', defaultFormat: 'DD/MM/YYYY' })
+console.log(d.toString()) // '01/01/2024'
 ```
+
+See the [Config](./config.md) page for more on configuration.

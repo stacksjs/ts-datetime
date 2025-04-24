@@ -1,67 +1,62 @@
 # Configuration
 
-_This is just an example of the ts-starter docs._
+The `ts-datetime` package is highly configurable and supports both global and per-instance configuration.
 
-The Reverse Proxy can be configured using a `reverse-proxy.config.ts` _(or `reverse-proxy.config.js`)_ file and it will be automatically loaded when running the `reverse-proxy` command.
+## Configuration File
+
+You can create a `datetime.config.ts` (or `.js`) file in your project root to set global defaults:
 
 ```ts
-// reverse-proxy.config.{ts,js}
-import type { ReverseProxyOptions } from '@stacksjs/rpx'
-import os from 'node:os'
-import path from 'node:path'
+// datetime.config.ts
+import type { DatetimeConfig } from './src/types'
 
-const config: ReverseProxyOptions = {
-  /**
-   * The from URL to proxy from.
-   * Default: localhost:5173
-   */
-  from: 'localhost:5173',
-
-  /**
-   * The to URL to proxy to.
-   * Default: stacks.localhost
-   */
-  to: 'stacks.localhost',
-
-  /**
-   * The HTTPS settings.
-   * Default: true
-   * If set to false, the proxy will use HTTP.
-   * If set to true, the proxy will use HTTPS.
-   * If set to an object, the proxy will use HTTPS with the provided settings.
-   */
-  https: {
-    domain: 'stacks.localhost',
-    hostCertCN: 'stacks.localhost',
-    caCertPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.ca.crt`),
-    certPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt`),
-    keyPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt.key`),
-    altNameIPs: ['127.0.0.1'],
-    altNameURIs: ['localhost'],
-    organizationName: 'stacksjs.org',
-    countryName: 'US',
-    stateName: 'California',
-    localityName: 'Playa Vista',
-    commonName: 'stacks.localhost',
-    validityDays: 180,
-    verbose: false,
-  },
-
-  /**
-   * The verbose setting.
-   * Default: false
-   * If set to true, the proxy will log more information.
-   */
-  verbose: false,
+const config: DatetimeConfig = {
+  /** Enable verbose logging for debugging */
+  verbose: true,
+  /** Default locale for formatting and humanization (e.g. 'en', 'fr') */
+  locale: 'en',
+  /** Default timezone (e.g. 'UTC', 'America/New_York') */
+  timezone: 'UTC',
+  /** Strict parsing of date strings */
+  strict: false,
+  /** First day of week (0=Sunday, 1=Monday, etc.) */
+  firstDayOfWeek: 1,
+  /** Default format string for .format()/.toString() */
+  defaultFormat: 'YYYY-MM-DDTHH:mm:ssZ',
+  /** Locale for parsing relative strings */
+  parseLocale: 'en',
 }
 
 export default config
 ```
 
-_Then run:_
+## Config Options
 
-```bash
-./rpx start
+| Option           | Type      | Default                | Description                                                      |
+|------------------|-----------|------------------------|------------------------------------------------------------------|
+| `verbose`        | boolean   | `true`                 | Enable verbose logging for debugging                              |
+| `locale`         | string    | `'en'`                 | Default locale for formatting and humanization                    |
+| `timezone`       | string    | `'UTC'`                | Default timezone (future support)                                 |
+| `strict`         | boolean   | `false`                | Strict parsing of date strings                                    |
+| `firstDayOfWeek` | number    | `1`                    | First day of week (0=Sunday, 1=Monday, etc.)                     |
+| `defaultFormat`  | string    | `'YYYY-MM-DDTHH:mm:ssZ'`| Default format string for `.format()` and `.toString()`           |
+| `parseLocale`    | string    | `'en'`                 | Locale for parsing relative strings                               |
+
+## Usage
+
+You can override config globally (via the config file), per instance, or per method call:
+
+```ts
+import { Datetime } from 'ts-datetime'
+
+// Uses global config
+const d1 = new Datetime('2024-01-01T00:00:00Z')
+
+// Override config per instance
+const d2 = new Datetime('2024-01-01T00:00:00Z', { locale: 'fr', defaultFormat: 'DD/MM/YYYY' })
+
+// Override config per method call
+const d3 = Datetime.fromString('next week', { strict: true })
 ```
 
-To learn more, head over to the [documentation](https://reverse-proxy.sh/).
+See the [Usage](./usage.md) page for more examples.
