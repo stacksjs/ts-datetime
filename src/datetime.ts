@@ -223,20 +223,32 @@ export class Datetime {
   subDays(days: number): Datetime { return this.addDays(-days) }
 
   addMonths(months: number): Datetime {
+    const origDay = this._date.getDate()
     const d = new Date(this._date)
+    d.setDate(1)
     d.setMonth(d.getMonth() + months)
+    const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
+    d.setDate(Math.min(origDay, lastDay))
     return new Datetime(d, this._config)
   }
 
-  subMonths(months: number): Datetime { return this.addMonths(-months) }
+  subMonths(months: number): Datetime {
+    return this.addMonths(-months)
+  }
 
   addYears(years: number): Datetime {
+    const origDay = this._date.getDate()
     const d = new Date(this._date)
+    d.setDate(1)
     d.setFullYear(d.getFullYear() + years)
+    const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
+    d.setDate(Math.min(origDay, lastDay))
     return new Datetime(d, this._config)
   }
 
-  subYears(years: number): Datetime { return this.addYears(-years) }
+  subYears(years: number): Datetime {
+    return this.addYears(-years)
+  }
 
   addHours(hours: number): Datetime {
     const d = new Date(this._date)
@@ -654,8 +666,10 @@ export class DatetimePeriod implements Iterable<Datetime> {
   * [Symbol.iterator](): Iterator<Datetime> {
     let current = this.start.clone()
     const end = this.end
+    let yielded = false
     while (current.isBefore(end) || current.isSame(end)) {
       yield current.clone()
+      yielded = true
       current = current
         .addYears(this.interval.years)
         .addMonths(this.interval.months)
@@ -666,6 +680,10 @@ export class DatetimePeriod implements Iterable<Datetime> {
         .addMilliseconds(this.interval.milliseconds)
       if (current.isAfter(end))
         break
+    }
+    // If start > end, yield start once (Carbon behavior)
+    if (!yielded && this.start.isAfter(this.end)) {
+      yield this.start.clone()
     }
   }
 }
