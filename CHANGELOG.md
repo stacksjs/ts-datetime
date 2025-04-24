@@ -1,4 +1,18 @@
 
+## v0.1.1...main
+
+[compare changes](https://github.com/stacksjs/ts-datetime/compare/v0.1.1...main)
+
+### 🏡 Chore
+
+- Adjust links ([a942d62](https://github.com/stacksjs/ts-datetime/commit/a942d62))
+- Adjust meta images ([7370708](https://github.com/stacksjs/ts-datetime/commit/7370708))
+- Add credits ([62c38ff](https://github.com/stacksjs/ts-datetime/commit/62c38ff))
+
+### ❤️ Contributors
+
+- Chris ([@chrisbbreuer](https://github.com/chrisbbreuer))
+
 ## v0.1.0...main
 
 [compare changes](https://github.com/stacksjs/ts-datetime/compare/v0.1.0...main)
