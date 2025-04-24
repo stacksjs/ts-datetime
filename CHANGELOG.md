@@ -1,4 +1,16 @@
 
+## v0.1.0...main
+
+[compare changes](https://github.com/stacksjs/ts-datetime/compare/v0.1.0...main)
+
+### 🏡 Chore
+
+- Adjust name ([cf7dcd9](https://github.com/stacksjs/ts-datetime/commit/cf7dcd9))
+
+### ❤️ Contributors
+
+- Chris ([@chrisbbreuer](https://github.com/chrisbbreuer))
+
 ## ...main
 
 
