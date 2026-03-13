@@ -2,7 +2,7 @@
 
 ## About
 
-A TypeScript date and time library.
+A modern, immutable, and fully-typed TypeScript datetime library inspired by Carbon (PHP) and Day.js. It provides a fluent, chainable API for date manipulation, formatting, and comparison, with built-in support for intervals (durations), periods (date ranges with iteration), relative string parsing (e.g. "next week", "+2 days"), human-readable diffs, and locale-aware configuration. All operations return new instances to ensure immutability.
 
 ## Linting
 
