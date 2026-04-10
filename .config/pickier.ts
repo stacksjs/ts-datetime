@@ -7,7 +7,7 @@ const config: PickierConfig = {
     '**/.git/**', '**/coverage/**', '**/*.min.js', '**/bun.lock',
     '**/benchmarks/**', '**/.claude/**', '**/.zed/**',
   ],
-  lint: { extensions: ['ts', 'js'], reporter: 'stylish', cache: false, maxWarnings: -1 },
+  lint: { extensions: ['ts', 'js', 'md'], reporter: 'stylish', cache: false, maxWarnings: -1 },
   format: {
     extensions: ['ts', 'js', 'json', 'md', 'yaml', 'yml'],
     trimTrailingWhitespace: true, maxConsecutiveBlankLines: 1,
