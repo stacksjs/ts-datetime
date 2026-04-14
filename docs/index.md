@@ -35,5 +35,3 @@ features:
     icon: "✅"
     details: "Thoroughly tested for edge cases and correctness."
 ---
-
-<Home />

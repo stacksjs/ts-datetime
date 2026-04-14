@@ -2,7 +2,7 @@
 
 A modern, immutable, and fully-typed TypeScript datetime library inspired by Carbon (PHP) and Day.js.
 
-## Why ts-datetime?
+## Why ts-datetime
 
 - **Immutable**: All operations return new instances.
 - **Fluent API**: Chainable, readable, and expressive.
